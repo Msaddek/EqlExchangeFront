@@ -39,6 +39,7 @@
 .price-up {
   color: #11cb81;
   position: relative;
+  display: inline;
   left: 750px;
   bottom: 110px;
   font-size: 34px;
@@ -48,6 +49,7 @@
 .price-down {
     color: #dc3e4f;
     position: relative;
+  display: inline;
     left: 750px;
     bottom: 110px;
     font-size: 34px;
