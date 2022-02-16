@@ -31,10 +31,7 @@ import {RefillModule} from "./refill/refill.module";
 import {MatListModule} from "@angular/material/list";
 import { TransferComponent } from './transfer/transfer.component';
 import {TransferModule} from "./transfer/transfer.module";
-import { MatInputModule } from '@angular/material/input';
-import { UserComponent } from './user/user.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -44,8 +41,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     ChartComponent,
     ExplorerComponent,
     TradeComponent,
-    TransactionsComponent,
-    UserComponent
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
@@ -74,9 +70,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatInputModule,
     RefillModule,
     MatListModule,
-    TransferModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    TransferModule
   ],
   providers: [],
   bootstrap: [AppComponent]
