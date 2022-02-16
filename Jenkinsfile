@@ -13,7 +13,7 @@ triggers { pollSCM '* * * * *' }
         BUILD_SUCCESS= false
         
 
-        AWS_EB_APP_VERSION = "${BUILD_ID}"
+        AWS_EB_APP_VERSION = "${BUILD_ID}-local"
     }
 
   
