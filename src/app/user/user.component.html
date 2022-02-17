@@ -1,0 +1,73 @@
+<div class="popup-container">
+    <img alt="popup" class="popup-img" src="/assets/img/popup/popup5.png">
+</div>
+<div class="title-container">
+    <h1 class="title-page">YOUR INFORMATIONS</h1>
+</div>
+<mat-card class="card">
+    <div class="credit-card">
+        <mat-card-subtitle>Name :</mat-card-subtitle>
+        <div class="date-cvc">
+            <mat-label class="info"></mat-label>
+            <mat-label class="info">Username</mat-label>
+        </div>
+        <br/>
+        <mat-card-subtitle>User name :</mat-card-subtitle>
+        <div class="date-cvc">
+            <mat-label class="info">Username</mat-label>
+        </div>
+        <br/>
+        <div class="date-cvc">
+            <mat-card-subtitle>Mail :</mat-card-subtitle>
+            <mat-label class="info">Mail</mat-label>
+        </div>
+        <br/>
+        <div class="date-cvc">
+            <mat-card-subtitle>Wallet address :</mat-card-subtitle>
+            <mat-label class="info">Wallet address</mat-label>
+        </div>
+    </div>
+</mat-card>
+<div class="title-container">
+    <h1 class="title-page">UPDATE YOUR PROFILE</h1>
+</div>
+<mat-card class="card">
+    <div class="credit-card">
+        <form [formGroup]="formUsername" class="normal-form" (ngSubmit)="updateUser()">
+            <mat-card-subtitle>Enter new username</mat-card-subtitle>
+            <div class="date-cvc">
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input formControlName="username" required matInput>
+                </mat-form-field>
+            </div>
+            <button class="submit-btn" type="submit" mat-raised-button color="primary" [disabled]="!formUsername.valid">Save</button>
+        </form>
+    </div>
+</mat-card>
+<mat-card class="card">
+    <div class="credit-card">
+        <form [formGroup]="formPassword" class="normal-form" (ngSubmit)="updateUser()">
+            <mat-card-subtitle>Enter new password</mat-card-subtitle>
+            <div class="date-cvc">
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" [type]="hide ? 'password' : 'text'" required matInput>
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button> 
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Confirm Password</mat-label>
+                    <input formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" required matInput>
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="formPassword.get('confirmPassword')?.errors?.['notSame']">Passwords are different.</mat-error>
+                  </mat-form-field>
+            </div>
+            <button class="submit-btn" type="submit" mat-raised-button color="primary" [disabled]="!formPassword.valid">Save</button>
+        </form>
+    </div>
+</mat-card>
+ 

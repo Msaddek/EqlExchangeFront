@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {User} from "../model/User";
 import {Observable} from "rxjs";
+import { UpdateUserDto } from '../model/UpdateUserDto';
 
 
 @Injectable({
@@ -32,6 +33,10 @@ export class UserService {
   public checkExistEmail(email: string): Observable<any> {
     return this.http.get(this.apiURL+`/api/exist?email=${email}`);
   }
+
+  public updateUser(updateUserDto: UpdateUserDto): Observable<any>{
+    return this.http.post<UpdateUserDto>(this.apiLambda+`/updateuser`, updateUserDto);
+  };
 
   errorHandler(error: any) {
     console.log(error);
