@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
 import {TradeOrderService} from "./service/trade-order.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {OrderService} from "../transactions/service/order.service";
@@ -40,8 +40,8 @@ export class TradeComponent implements OnInit {
       user: new FormControl(sessionStorage.getItem('email')),
       currencyPair: new FormControl(this.pair),
       orderType: this.typeControl,
-      amount: new FormControl(0),
-      limitPrice: new FormControl(0)
+      amount: new FormControl(0, {validators: this.controlAmountToSell()}),
+      limitPrice: new FormControl(0, {validators: this.controlLimitPrice()})
     });
   }
 
@@ -76,7 +76,7 @@ export class TradeComponent implements OnInit {
     else return 0;
   }
 
-  sendTradeOrder() {
+  public sendTradeOrder() {
     this.tradeOrderService.addTradeOrder(this.form.value).subscribe({
         next: () => {
           this.isTransfer = true;
@@ -89,15 +89,39 @@ export class TradeComponent implements OnInit {
     )
   }
 
-  getTradeOrders() {
+  private getTradeOrders() {
     this.orderService.getOrdersByPair(this.pair).subscribe({
       next: (response:Order[]) => {
-        this.orders = response;
+        this.orders = response.reverse();
     },
       error: (error: HttpErrorResponse) => {
         alert(error);
       }
     });
+  }
+
+  private controlLimitPrice(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if(this.form != undefined && this.form.get('orderType')?.value =='BID') {
+        let isValid: boolean;
+        isValid = control.value <= this.getMaxLimit() && control.value >= 0;
+        return !isValid ? {validLimit: true} : null;
+      } else {
+        return null;
+      }
+    };
+  }
+
+  private controlAmountToSell(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if(this.form != undefined && this.form.get('orderType')?.value =='ASK') {
+        let isValid: boolean;
+        isValid = control.value <= this.assetAmount && control.value > 0;
+        return !isValid ? {validAmount: true} : null;
+      } else {
+        return null;
+      }
+    };
   }
 
 }

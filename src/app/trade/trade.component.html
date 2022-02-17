@@ -4,8 +4,6 @@
 <div class="title-container">
   <h1 class="title-page">TRADE</h1>
 </div>
-<h1>{{balance}}</h1>
-
 
 <div class="trade-container">
   <div class="chart-cont">
@@ -26,20 +24,23 @@
 
       <div class="input-form">
         <mat-label *ngIf="form.get('orderType')!.value =='BID'">Balance : {{balance.toFixed(2)}}€</mat-label>
-        <mat-label *ngIf="form.get('orderType')!.value =='ASK'">max amount: {{assetAmount.toFixed(2)}} {{currencyId}}</mat-label>
+        <mat-label *ngIf="form.get('orderType')!.value =='ASK'">Max amount: {{assetAmount.toFixed(2)}} {{currencyId}}</mat-label>
         <mat-form-field appearance="fill" floatLabel="always">
-          <mat-label *ngIf="form.get('orderType')!.value =='BID'">Enter amount to buy</mat-label>
-          <mat-label *ngIf="form.get('orderType')!.value =='ASK'">Enter amount to sell</mat-label>
-          <input matInput formControlName="amount" type="number" class="input-trade" placeholder="0" required >
+          <mat-label *ngIf="form.get('orderType')!.value =='BID'">Amount to buy</mat-label>
+          <mat-label *ngIf="form.get('orderType')!.value =='ASK'">Amount to sell</mat-label>
+          <input matInput formControlName="amount" type="number" min="0" class="input-trade" placeholder="0" required >
+          <mat-error *ngIf="form.get('amount')?.errors?.['validAmount']">Your max amount is {{assetAmount}}</mat-error>
           <span matPrefix>{{currencyId}}&nbsp;</span>
         </mat-form-field>
       </div>
 
       <div class="input-form">
         <mat-label *ngIf="form.get('orderType')!.value =='BID'">Limit max : {{getMaxLimit().toFixed(2)}}€</mat-label>
+        <mat-label *ngIf="form.get('orderType')!.value =='ASK'">Choose your limit price</mat-label>
         <mat-form-field appearance="fill" floatLabel="always">
           <mat-label>Limit price</mat-label>
-          <input matInput formControlName="limitPrice" type="number" class="input-trade" placeholder="0">
+          <input matInput formControlName="limitPrice" type="number" min="0" class="input-trade" placeholder="0" required>
+          <mat-error *ngIf="form.get('limitPrice')?.errors?.['validLimit']">Your limit max is {{getMaxLimit()}}</mat-error>
           <span matPrefix>€&nbsp;</span>
         </mat-form-field>
       </div>
@@ -64,7 +65,7 @@
   <ng-container matColumnDef="Date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
     <td mat-cell *matCellDef="let element" [ngStyle]="{'color': element.orderType == 'BID' ? '#b8e6d1' : '#d49298'}">
-      {{element.creationDate.replace('T', ' ')}}
+      {{(element.creationDate.replace('T', ' ')).substring(0,19)}}
     </td>
   </ng-container>
 
