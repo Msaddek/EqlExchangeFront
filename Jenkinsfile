@@ -11,18 +11,14 @@ triggers { pollSCM '* * * * *' }
         AWS_S3_BUCKET = 'front-eql-xchange'
         REPO = 'https://github.com/Msaddek/EqlExchangeFront'
         BUILD_SUCCESS= false
+        
 
-        AWS_EB_APP_VERSION = "${BUILD_ID}-local"
+        AWS_EB_APP_VERSION = "${BUILD_ID}"
     }
 
   
     stages {
-       stage('Checking ENV variables') {
-            steps {
-                echo "WALLET_URL=${env.WALLET_URL}"
-               
-            }
-        }
+       
         stage('Checkout Project') {
             steps {
                 echo "-=- Checout project -=-"
@@ -40,10 +36,29 @@ triggers { pollSCM '* * * * *' }
                 
             }
         }
+        stage ('Set environment URL') {
+           
+            steps {
+                
+                sh'cat ../full/output.txt | tr -d \' "\'>environment.txt'
+                withEnv(readFile('environment.txt').split('\n') as List) {
+                    sh "echo ${matchengine_URL}"
+                    sh "echo ${walletapp_URL}"
+                    sh "echo ${prodDB_URL}"
+                    sh 'sed -i \'s/walletapp_URL/\'"$walletapp_URL"\'/g\'  src/environments/environment.prod.ts'
+                    sh 'sed -i \'s/matchengine_URL/\'"$matchengine_URL"\'/g\'  src/environments/environment.prod.ts'
+                    sh 'cat src/environments/environment.prod.ts'
+                }           
+                
+            }
+        }
         stage('Build') {
             steps {
                 echo "-=- Build project -=-"
+                
                 sh 'npm run build --prod'
+            
+              
             }
             post {
                 success {
