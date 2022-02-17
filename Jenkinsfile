@@ -56,7 +56,7 @@ triggers { pollSCM '* * * * *' }
             steps {
                 echo "-=- Build project -=-"
                 
-                sh 'npm run build --prod'
+                sh 'npm run build --prod --verbose'
             
               
             }
