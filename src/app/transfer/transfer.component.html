@@ -6,40 +6,42 @@
 </div>
 
 <mat-card class="card">
-    <mat-card-title>Transfer your Crypto</mat-card-title>
-    <div class="formulaire">
-        <form [formGroup]="form" class="normal-form" (ngSubmit)="doTransfer()">
+  <mat-card-title>Transfer your Crypto</mat-card-title>
+  <div class="formulaire">
+    <form [formGroup]="form" class="normal-form" (ngSubmit)="doTransfer()">
 
-          <mat-card-subtitle>Select crypto</mat-card-subtitle>
-            <mat-form-field appearance="fill">
-                <mat-label>Select crypto</mat-label>
-                <mat-select formControlName="currencyTicker">
-                  <mat-option *ngFor="let currency of currencies" value="{{currency.ticker}}">
-                    {{currency.name}}
-                    <img alt="logo" src="assets/logo/{{currency.ticker.toLocaleLowerCase()}}.png" class="currency-logo">
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+      <mat-card-subtitle>Select crypto</mat-card-subtitle>
+      <mat-form-field appearance="fill">
+        <mat-label>Select crypto</mat-label>
+        <mat-select formControlName="currencyTicker" (selectionChange)="getAssetAmount()">
+          <mat-option *ngFor="let currency of currencies" value="{{currency.ticker}}">
+            {{currency.name}}
+            <img alt="logo" src="assets/logo/{{currency.ticker.toLocaleLowerCase()}}.png" class="currency-logo">
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-          <mat-card-subtitle>Enter amount to send</mat-card-subtitle>
-              <mat-form-field appearance="fill">
-                <mat-label>Amount</mat-label>
-                <input matInput formControlName="amount" matInput>
-              </mat-form-field>
+      <mat-card-subtitle>Enter amount to send</mat-card-subtitle>
 
-          <mat-card-subtitle>Enter wallet adress</mat-card-subtitle>
-              <mat-form-field appearance="fill">
-                <mat-label>Wallet address</mat-label>
-                <input matInput formControlName="walletAdresse" matInput>
-              </mat-form-field>
+      <mat-label id="max-amount">Max amount: {{assetAmount.toFixed(2)}} {{form.get('currencyTicker')?.value}}</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput formControlName="amount" matInput>
+      </mat-form-field>
 
-              <button type="submit" mat-raised-button color="primary">Transfer</button>
+      <mat-card-subtitle>Enter wallet adress</mat-card-subtitle>
+      <mat-form-field appearance="fill">
+        <mat-label>Wallet address</mat-label>
+        <input matInput formControlName="walletAdresse" matInput>
+      </mat-form-field>
 
-              <div *ngIf="isSuccess" class="success-container">
-                <mat-icon *ngIf="isTransfertOk" class="done-logo">check_circle_outline</mat-icon>
-                <mat-icon *ngIf="isTransfertOk == false" class="undone-logo">error</mat-icon>
-                <h3>{{resultMessage}}  </h3>
-              </div>
-        </form>
-    </div>
+      <button type="submit" mat-raised-button color="primary">Transfer</button>
+
+      <div *ngIf="isSuccess" class="success-container">
+        <mat-icon *ngIf="isTransfertOk" class="done-logo">check_circle_outline</mat-icon>
+        <mat-icon *ngIf="isTransfertOk == false" class="undone-logo">error</mat-icon>
+        <h3>{{resultMessage}}  </h3>
+      </div>
+    </form>
+  </div>
 </mat-card>

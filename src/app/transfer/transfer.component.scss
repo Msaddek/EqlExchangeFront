@@ -1,63 +1,67 @@
 .currency-logo {
-    width: 15px;
-    height: 15px;
-  }
+  width: 15px;
+  height: 15px;
+}
 
-  .card {
-    width: 50%;
-    margin: 0 auto;
-    background-color: #142028;
-  }
+.card {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #142028;
+}
 
-  mat-card-title {
-    text-align: center;
-    padding: 10px;
-    color: white;
-  }
+mat-card-title {
+  text-align: center;
+  padding: 10px;
+  color: white;
+}
 
-  mat-card-subtitle {
-    font-size: 20px;
-    color: #818ea3;
-  }
+mat-card-subtitle {
+  font-size: 20px;
+  color: #818ea3;
+}
 
-  .formulaire {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
+.formulaire {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .normal-form {
-    display: flex;
-    flex-direction: column;
-  }
+.normal-form {
+  display: flex;
+  flex-direction: column;
+}
 
-  button {
-    width: 50%;
-    margin: 10px auto;
-    background-color: #fcd535 !important;
-    color: black !important;
-  }
+button {
+  width: 50%;
+  margin: 10px auto;
+  background-color: #fcd535 !important;
+  color: black !important;
+}
 
-  ::ng-deep {
-    .mat-form-field .mat-form-field-flex{
-      background-color: white;
-    }
+::ng-deep {
+  .mat-form-field .mat-form-field-flex {
+    background-color: white;
   }
+}
 
-  .done-logo {
-    color: #17c671;
-  }
+.done-logo {
+  color: #17c671;
+}
 
-  .undone-logo {
-    color: orange;
-  }
+.undone-logo {
+  color: orange;
+}
 
-  .success-container {
-    justify-content: center;
-    display: flex;
-    color: white;
-  }
+.success-container {
+  justify-content: center;
+  display: flex;
+  color: white;
+}
 
-  .success-container h3 {
-    margin-left: 10px;
-  }
+.success-container h3 {
+  margin-left: 10px;
+}
+
+#max-amount {
+  color: white;
+}
