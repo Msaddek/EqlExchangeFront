@@ -11,6 +11,7 @@
 
   <div class="credit-card">
 
+    <img alt="credit-cards" src="/assets/img/credit-card.png" id="credit-cards">
     <mat-card-subtitle>Credit card</mat-card-subtitle>
     <mat-form-field appearance="fill">
       <mat-label>Card number</mat-label>
@@ -52,7 +53,8 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Amount</mat-label>
-        <input matInput formControlName="montant" matInput>
+        <input matInput type="number" min="0" formControlName="montant" matInput>
+        <mat-error *ngIf="this.form.get('montant')?.value < 0">Please enter a valid amount.</mat-error>
       </mat-form-field>
 
       <button type="submit" mat-raised-button color="primary">Send</button>

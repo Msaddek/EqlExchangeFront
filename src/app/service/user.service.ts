@@ -23,7 +23,9 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public getCurrentUser(): Observable<User> {
-    return this.http.get<User>(this.apiURL+`/api/user?email=${this.userEmail}`, this.httpOptions);
+    console.log(this.httpOptions);
+    console.log(sessionStorage.getItem('authToken'));
+    return this.http.get<User>(this.apiLambda+`/getcurrent/?email=${this.userEmail}`, this.httpOptions);
   }
 
   public addUser(user: User): Observable<User> {

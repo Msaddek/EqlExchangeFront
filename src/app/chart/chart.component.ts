@@ -17,7 +17,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
   @Input()
   public height!: number;
 
+  @Input()
+  public currency!: string;
+
   public data$!: Promise<any>;
+
+  public currentPrice!: number;
+
+  public lastPrice!: number;
+
 
   constructor() {
   }
@@ -30,14 +38,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
   public ngOnInit(): void {
     this.height;
     this.width;
-  };
-
-
-  public price: number | undefined ;
+  }
 
   dochart() {
-
-    const log = console.log;
 
     const chartProperties = {
       width: this.width,
@@ -68,8 +71,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
     this.data$.then(res => res.json())
       .then(data => {
+        this.currentPrice = parseFloat(data[999][4]);
+        this.lastPrice = parseFloat(data[998][4]);
         const cdata = data.map((d: string[]) => {
-          this.price = parseFloat(d[1]);
           return {
 
             time: parseFloat(d[0]) / 1000,
@@ -82,8 +86,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
         candleSeries.setData(cdata);
 
       })
-      .catch(err => log(err))
-
+      .catch(err => console.log(err))
   }
 
 

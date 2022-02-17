@@ -8,22 +8,25 @@ triggers { pollSCM '* * * * *' }
         AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
         ARTIFACT_NAME = "front-${BUILD_ID}.jar"
-        AWS_S3_BUCKET = 'xchange-angular'
+        AWS_S3_BUCKET = 'front-eql-xchange'
         REPO = 'https://github.com/Msaddek/EqlExchangeFront'
         BUILD_SUCCESS= false
 
-        AWS_EB_APP_VERSION = "${BUILD_ID}"
-    }
-    tools {
-        maven 'MVN'
+        AWS_EB_APP_VERSION = "${BUILD_ID}-local"
     }
 
+  
     stages {
-       
+       stage('Checking ENV variables') {
+            steps {
+                echo "WALLET_URL=${env.WALLET_URL}"
+               
+            }
+        }
         stage('Checkout Project') {
             steps {
                 echo "-=- Checout project -=-"
-                git branch: 'master', credentialsId: 'bd839270-f94c-4dc1-9081-6b4b889efaae', url: 'git@github.com:Msaddek/EqlExchangeFront.git'
+                git branch: 'master', credentialsId: 'jenkinsSSH', url: 'git@github.com:Msaddek/EqlExchangeFront.git'
             }
         }
         

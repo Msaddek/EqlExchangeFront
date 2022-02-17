@@ -82,19 +82,10 @@
   <div class="chart-container">
 
     <div class="container-list-chart">
-
-      <div class="chart-pair">
-        <div class="container-pair">
-          <img alt="currency" src="/assets/logo/eur.png" class="currency-logo">
-          <img alt="currency" src="/assets/logo/btc.png" class="currency-logo">
-          <h2>EUR /</h2>
-          <h1>BTC</h1>
-        </div>
-        <app-chart [symbolPair]="'BTCEUR'" [width]="1000" [height]="400"></app-chart>
+        <app-chart [symbolPair]="'BTCEUR'" [width]="1000" [height]="400" [currency]="'BTC'"></app-chart>
       </div>
     </div>
   </div>
 
-</div>
 
 

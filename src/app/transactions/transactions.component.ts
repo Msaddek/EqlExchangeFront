@@ -22,7 +22,7 @@ export class TransactionsComponent implements OnInit {
   public getOrders(): void {
     this.orderService.getCurrentUserOrders().subscribe({
         next: (response: Order[]) => {
-          this.orders = response;
+          this.orders = response.reverse();
         },
         error: (error: HttpErrorResponse) => {
           alert(error.message);

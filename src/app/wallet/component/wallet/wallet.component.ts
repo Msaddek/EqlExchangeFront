@@ -4,7 +4,6 @@ import {AssetService} from '../../service/asset.service';
 import {Asset} from '../../state/asset';
 import {UserService} from "../../../service/user.service";
 import {User} from "../../../model/User";
-import {LoginResponse} from "../../../home/model/LogResponse";
 import {Currency} from "../../../explorer/state/currency";
 import {CurrencyService} from "../../../explorer/service/currency.service";
 
@@ -82,9 +81,12 @@ export class WalletComponent implements OnInit {
 
   private getCurrencyAmountByTicker(ticker: string): number {
     let result = 0;
-    for (let currency of this.currencies) {
-      if (currency.ticker == ticker) {
-        result = currency.price;
+    if(this.currencies != undefined){
+
+      for (let currency of this.currencies) {
+        if (currency.ticker == ticker) {
+          result = currency.price;
+        }
       }
     }
     return result;

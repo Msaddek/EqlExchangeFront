@@ -31,10 +31,11 @@ import {RefillModule} from "./refill/refill.module";
 import {MatListModule} from "@angular/material/list";
 import { TransferComponent } from './transfer/transfer.component';
 import {TransferModule} from "./transfer/transfer.module";
+import { MatInputModule } from '@angular/material/input';
 import { UserComponent } from './user/user.component';
-import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+
 
 @NgModule({
   declarations: [
@@ -70,10 +71,10 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatRadioModule,
     TradeModule,
     MatSelectModule,
+    MatInputModule,
     RefillModule,
     MatListModule,
     TransferModule,
-    MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule
   ],

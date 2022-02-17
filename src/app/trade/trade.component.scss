@@ -112,3 +112,27 @@ td {
   background-color: black;
 }
 
+#option-buy {
+  color: #17c671;
+  font-weight: bold;
+}
+
+#option-sell {
+  color: #dc3e4f;
+  font-weight: bold;
+}
+
+::ng-deep {
+  .mat-form-field .mat-form-field-flex{
+    background-color: white;
+  }
+}
+.input-trade {
+  color: black;
+}
+mat-form-field span {
+  color: black;
+}
+mat-form-field {
+  width: 100%;
+}

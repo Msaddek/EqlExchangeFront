@@ -19,7 +19,6 @@ export class LogoutComponent implements OnInit {
   }
 
   logout() {
-    console.log('hello world' + sessionStorage.getItem('authToken'))
     this.authenticateService.logout();
     this.dialogRef.close();
   }

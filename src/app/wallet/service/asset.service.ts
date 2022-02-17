@@ -27,8 +27,7 @@ export class AssetService {
 
   public getWalletAmount(assets: Asset[]): Observable<number> {
     let amount: number = 0;
-    let result = new Subject<number>()
-    console.log(assets);
+    let result = new Subject<number>();
     for (let asset of assets) {
       if (asset.currencyTicker == 'EUR') {
         amount += asset.amount
@@ -48,5 +47,9 @@ export class AssetService {
       }
     }
     return result.asObservable()
+  }
+
+  public getAssetByTicker(ticker: string): Observable<Asset> {
+    return this.http.get<Asset>(`${this.apiServer}/userAsset?userEmail=${this.email}&currencyTicker=${ticker}`);
   }
 }

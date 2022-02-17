@@ -1,2 +1,20 @@
 
+<div class="chart-pair">
+  <div class="container-pair">
+    <img alt="currency" src="/assets/logo/eur.png" class="currency-logo">
+    <img alt="currency" src="/assets/logo/btc.png" class="currency-logo">
+    <h2>EUR /</h2>
+    <h1>{{currency}}</h1>
+  </div>
+  <h5>Token: 0x438...600e</h5>
+  <div class="logo-link">
+    <img alt="bsc" src="/assets/img/link-logo/bscscan.png" class="icon-logo">
+    <img alt="cmc" src="/assets/img/link-logo/cmc-icon-blue.jpeg" class="icon-logo">
+    <img alt="coin-gecko" src="/assets/img/link-logo/coingecko.png" class="icon-logo">
+    <img alt="team-bright" src="/assets/img/link-logo/team-bright.png" class="icon-logo">
+    <img alt="metamask" src="/assets/img/link-logo/metamask.svg" class="icon-logo">
+  </div>
+  <h1 *ngIf="(lastPrice > currentPrice)" class="price-down">{{currentPrice?.toFixed(2)}} €</h1>
+  <h1 *ngIf="(lastPrice <= currentPrice)" class="price-up">{{currentPrice?.toFixed(2)}} €</h1>
 <div id="tvchart"></div>
+</div>

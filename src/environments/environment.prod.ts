@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiWalletUrl: 'https://1wallet-env.eba-7cp9usvp.eu-west-3.elasticbeanstalk.com/assets-api-rest',
+  apiWalletUrl: process.env["WALLET_URL"],
   backEnd: 'http://3legacy-env.eba-3dibhvqm.eu-west-3.elasticbeanstalk.com',
-  apiMatchingEngine:  'http://2matchengine-env.eba-8aanag8h.eu-west-3.elasticbeanstalk.com',
+  apiMatchingEngine:  process.env["MATCH_URL"],
   backLambda: 'https://v7oflitra5.execute-api.eu-west-3.amazonaws.com/prod'
 };

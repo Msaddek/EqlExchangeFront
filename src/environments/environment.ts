@@ -7,7 +7,7 @@ export const environment = {
   apiWalletUrl: 'http://localhost:9090/assets-api-rest',
   backEnd: 'http://localhost:8085',
   apiMatchingEngine: 'http://localhost:8080',
-  backLambda: 'https://4lid7fklik.execute-api.eu-west-3.amazonaws.com/test'
+  backLambda: 'https://v7oflitra5.execute-api.eu-west-3.amazonaws.com/prod'
 };
 
 /*
