@@ -26,17 +26,17 @@
       <mat-label id="max-amount">Max amount: {{assetAmount.toFixed(2)}} {{form.get('currencyTicker')?.value}}</mat-label>
       <mat-form-field appearance="fill">
         <mat-label>Amount</mat-label>
-        <input matInput formControlName="amount" matInput>
+        <input matInput type="number" min="1" formControlName="amount" matInput required>
         <mat-error *ngIf="form.get('amount')?.errors?.['validAmount']">You cannot send more than {{assetAmount.toFixed(2)}} {{form.get('currencyTicker')?.value}}</mat-error>
       </mat-form-field>
 
       <mat-card-subtitle>Enter wallet adress</mat-card-subtitle>
       <mat-form-field appearance="fill">
         <mat-label>Wallet address</mat-label>
-        <input matInput formControlName="walletAdresse" matInput>
+        <input matInput formControlName="walletAdresse" matInput required>
       </mat-form-field>
 
-      <button type="submit" mat-raised-button color="primary">Transfer</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">Transfer</button>
 
       <div *ngIf="isSuccess" class="success-container">
         <mat-icon *ngIf="isTransfertOk" class="done-logo">check_circle_outline</mat-icon>

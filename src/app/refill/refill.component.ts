@@ -24,7 +24,7 @@ export class RefillComponent implements OnInit {
     this.form = new FormGroup({
       currencyTicker: new FormControl(),
       userEmail: new FormControl(sessionStorage.getItem('email')),
-      montant: new FormControl()
+      montant: new FormControl(1)
     });
   }
 

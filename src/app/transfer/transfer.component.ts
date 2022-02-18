@@ -32,7 +32,7 @@ export class TransferComponent implements OnInit {
       userEmail: new FormControl(sessionStorage.getItem('email')),
       currencyTicker: new FormControl('BTC'),
       walletAdresse: new FormControl(),
-      amount: new FormControl(0, {validators: this.controlAmount()})
+      amount: new FormControl(1, {validators: this.controlAmount()})
     });
     this.getAssetAmount();
   }

@@ -43,7 +43,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Select</mat-label>
-        <mat-select formControlName="currencyTicker">
+        <mat-select formControlName="currencyTicker" required>
           <mat-option *ngFor="let currency of currencies" value="{{currency.ticker}}">
             {{currency.name}}
             <img alt="logo" src="assets/logo/{{currency.ticker.toLocaleLowerCase()}}.png" class="currency-logo">
@@ -53,11 +53,11 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Amount</mat-label>
-        <input matInput type="number" min="0" formControlName="montant" matInput>
+        <input matInput type="number" min="1" formControlName="montant" matInput required>
         <mat-error *ngIf="this.form.get('montant')?.value < 0">Please enter a valid amount.</mat-error>
       </mat-form-field>
 
-      <button type="submit" mat-raised-button color="primary">Send</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">Send</button>
 
       <div *ngIf="isSuccess" class="success-container">
         <mat-icon class="done-logo">check_circle_outline</mat-icon>
