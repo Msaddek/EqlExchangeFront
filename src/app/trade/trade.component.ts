@@ -19,7 +19,7 @@ export class TradeComponent implements OnInit {
   public form!: FormGroup;
   public currencyId!: string;
   public assetAmount!: number;
-  public balance: number = 0;
+  public balance: number = 1;
   public orders!: Order[];
   public pair!: string;
   typeControl = new FormControl('BID');
@@ -43,6 +43,7 @@ export class TradeComponent implements OnInit {
       amount: new FormControl(1, {validators: this.controlAmountToSell()}),
       limitPrice: new FormControl(1, {validators: this.controlLimitPrice()})
     });
+    this.getMaxLimit();
   }
 
   private getBalance(){
@@ -104,7 +105,7 @@ export class TradeComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       if(this.form != undefined && this.form.get('orderType')?.value =='BID') {
         let isValid: boolean;
-        isValid = control.value <= this.getMaxLimit() && control.value >= 0;
+        isValid = control.value <= this.getMaxLimit();
         return !isValid ? {validLimit: true} : null;
       } else {
         return null;
