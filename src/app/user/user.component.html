@@ -1,4 +1,3 @@
-<p>user works!</p>
 <div class="popup-container">
     <img alt="popup" class="popup-img" src="/assets/img/popup/popup5.png">
 </div>
@@ -7,25 +6,24 @@
 </div>
 <mat-card class="card">
     <div class="credit-card">
-        <mat-card-subtitle>Name :</mat-card-subtitle>
         <div class="date-cvc">
-            <mat-label class="info"></mat-label>
-            <mat-label class="info">Username</mat-label>
+            <mat-card-subtitle>Name :</mat-card-subtitle>
+            <mat-label class="info">{{fullName}}</mat-label>
         </div>
         <br/>
-        <mat-card-subtitle>User name :</mat-card-subtitle>
         <div class="date-cvc">
-            <mat-label class="info">Username</mat-label>
+            <mat-card-subtitle>User name :</mat-card-subtitle> 
+            <mat-label class="info">{{user.username}}</mat-label>
         </div>
         <br/>
         <div class="date-cvc">
             <mat-card-subtitle>Mail :</mat-card-subtitle>
-            <mat-label class="info">Mail</mat-label>
+            <mat-label class="info">{{user.email}}</mat-label>
         </div>
         <br/>
         <div class="date-cvc">
             <mat-card-subtitle>Wallet address :</mat-card-subtitle>
-            <mat-label class="info">Wallet address</mat-label>
+            <mat-label class="info">{{user.walletAddress}}</mat-label>
         </div>
     </div>
 </mat-card>
@@ -34,7 +32,7 @@
 </div>
 <mat-card class="card">
     <div class="credit-card">
-        <form [formGroup]="formUsername" class="normal-form" (ngSubmit)="updateUser()">
+        <form [formGroup]="formUsername" class="normal-form" (ngSubmit)="updateUserUserName()">
             <mat-card-subtitle>Enter new username</mat-card-subtitle>
             <div class="date-cvc">
                 <mat-form-field appearance="fill">
@@ -43,12 +41,16 @@
                 </mat-form-field>
             </div>
             <button class="submit-btn" type="submit" mat-raised-button color="primary" [disabled]="!formUsername.valid">Save</button>
+            <div *ngIf="isSuccessUsername" class="success-container">
+                <mat-icon class="done-logo">check_circle_outline</mat-icon>
+                <h3>Successfully ! </h3>
+            </div>
         </form>
     </div>
 </mat-card>
 <mat-card class="card">
     <div class="credit-card">
-        <form [formGroup]="formPassword" class="normal-form" (ngSubmit)="updateUser()">
+        <form [formGroup]="formPassword" class="normal-form" (ngSubmit)="updateUserPassword()">
             <mat-card-subtitle>Enter new password</mat-card-subtitle>
             <div class="date-cvc">
                 <mat-form-field appearance="fill">
@@ -68,6 +70,10 @@
                   </mat-form-field>
             </div>
             <button class="submit-btn" type="submit" mat-raised-button color="primary" [disabled]="!formPassword.valid">Save</button>
+            <div *ngIf="isSuccessPassword" class="success-container">
+                <mat-icon class="done-logo">check_circle_outline</mat-icon>
+                <h3>Successfully ! </h3>
+            </div>
         </form>
     </div>
 </mat-card>
