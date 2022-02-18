@@ -40,7 +40,7 @@ triggers { pollSCM '* * * * *' }
            
             steps {
                 
-                sh'cat ../full/output.txt | tr -d \' "\'>environment.txt'
+                sh'cat ../output.txt | tr -d \' "\'>environment.txt'
                 withEnv(readFile('environment.txt').split('\n') as List) {
                     sh "echo ${matchengine_URL}"
                     sh "echo ${walletapp_URL}"
