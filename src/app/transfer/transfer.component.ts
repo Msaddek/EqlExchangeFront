@@ -1,11 +1,10 @@
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {HttpErrorResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {CurrencyService} from '../explorer/service/currency.service';
 import {Currency} from '../explorer/state/currency';
 import {PaymentService} from '../refill/service/payment.service';
 import {ResultTransferDto} from 'src/app/transfer/state/resultTransferDto';
-import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {AssetService} from "../wallet/service/asset.service";
 
