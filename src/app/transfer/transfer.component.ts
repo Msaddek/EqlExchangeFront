@@ -1,6 +1,6 @@
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {CurrencyService} from '../explorer/service/currency.service';
 import {Currency} from '../explorer/state/currency';
 import {PaymentService} from '../refill/service/payment.service';
@@ -29,13 +29,13 @@ export class TransferComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrencies();
-    this.getAssetAmount();
     this.form = new FormGroup({
       userEmail: new FormControl(sessionStorage.getItem('email')),
       currencyTicker: new FormControl('BTC'),
       walletAdresse: new FormControl(),
-      amount: new FormControl()
+      amount: new FormControl(0, {validators: this.controlAmount()})
     });
+    this.getAssetAmount();
   }
 
   doTransfer() {
@@ -63,7 +63,6 @@ export class TransferComponent implements OnInit {
       let ticker = this.form.get('currencyTicker')?.value;
       this.assetService.getAssetByTicker(ticker).subscribe({
         next: (response) => {
-          console.log(response.amount)
           this.assetAmount = response.amount;
         },
         error: (error) => {
@@ -84,6 +83,18 @@ export class TransferComponent implements OnInit {
         }
       }
     );
+  }
+
+  private controlAmount(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if(this.form != undefined) {
+        let isValid: boolean;
+        isValid = control.value <= this.assetAmount && control.value >= 0;
+        return !isValid ? {validAmount: true} : null;
+      } else {
+        return null;
+      }
+    };
   }
 
 }

@@ -27,6 +27,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Amount</mat-label>
         <input matInput formControlName="amount" matInput>
+        <mat-error *ngIf="form.get('amount')?.errors?.['validAmount']">You cannot send more than {{assetAmount.toFixed(2)}} {{form.get('currencyTicker')?.value}}</mat-error>
       </mat-form-field>
 
       <mat-card-subtitle>Enter wallet adress</mat-card-subtitle>
