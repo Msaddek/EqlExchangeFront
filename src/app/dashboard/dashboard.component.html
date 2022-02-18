@@ -18,9 +18,11 @@
 <div class="page">
 
 
-
   <div class="cards-container">
 
+    <div class="one-card">
+      <img id="gif-img" src="assets/img/gif/trade.gif">
+    </div>
     <div class="one-card">
       <mat-card class="resume-card">
         <mat-card-title>Last exchange</mat-card-title>
@@ -31,12 +33,12 @@
           </button>
         </div>
         <mat-divider></mat-divider>
-        <div class="description" >
+        <div class="description">
           <h2 *ngIf="lastOrder?.orderType == 'BID' " class="bid">{{lastOrder?.amount?.toFixed(3)}} |
-            <span >BUY</span>
+            <span>BUY</span>
           </h2>
           <h2 *ngIf="lastOrder?.orderType == 'ASK' " class="sell">{{lastOrder?.amount?.toFixed(3)}} |
-            <span >SELL</span>
+            <span>SELL</span>
           </h2>
         </div>
       </mat-card>
@@ -82,10 +84,11 @@
   <div class="chart-container">
 
     <div class="container-list-chart">
-        <app-chart [symbolPair]="'BTCEUR'" [width]="1000" [height]="400" [currency]="'BTC'"></app-chart>
-      </div>
+      <app-chart [symbolPair]="'BTCEUR'" [width]="1000" [height]="400" [currency]="'BTC'"></app-chart>
     </div>
   </div>
+</div>
+
 
 
 
