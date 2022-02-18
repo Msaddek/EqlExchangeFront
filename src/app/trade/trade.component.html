@@ -28,7 +28,7 @@
         <mat-form-field appearance="fill" floatLabel="always">
           <mat-label *ngIf="form.get('orderType')!.value =='BID'">Amount to buy</mat-label>
           <mat-label *ngIf="form.get('orderType')!.value =='ASK'">Amount to sell</mat-label>
-          <input matInput formControlName="amount" type="number" min="0" class="input-trade" placeholder="0" required >
+          <input matInput formControlName="amount" type="number" min="1" class="input-trade" placeholder="0" required >
           <mat-error *ngIf="form.get('amount')?.errors?.['validAmount']">Your max amount is {{assetAmount}}</mat-error>
           <span matPrefix>{{currencyId}}&nbsp;</span>
         </mat-form-field>
@@ -39,7 +39,7 @@
         <mat-label *ngIf="form.get('orderType')!.value =='ASK'">Choose your limit price</mat-label>
         <mat-form-field appearance="fill" floatLabel="always">
           <mat-label>Limit price</mat-label>
-          <input matInput formControlName="limitPrice" type="number" min="0" class="input-trade" placeholder="0" required>
+          <input matInput formControlName="limitPrice" type="number" min="1" class="input-trade" placeholder="0" required>
           <mat-error *ngIf="form.get('limitPrice')?.errors?.['validLimit']">Your limit max is {{getMaxLimit()}}</mat-error>
           <span matPrefix>€&nbsp;</span>
         </mat-form-field>
@@ -47,9 +47,9 @@
 
       <div class="btn-submit">
         <button *ngIf="form.get('orderType')!.value =='BID'"
-                type="submit" mat-raised-button color="primary" >BUY</button>
+                type="submit" mat-raised-button color="primary" [disabled]="!form.valid">BUY</button>
         <button *ngIf="form.get('orderType')!.value =='ASK'"
-                type="submit" mat-raised-button color="warn" >SELL</button>
+                type="submit" mat-raised-button color="warn" [disabled]="!form.valid">SELL</button>
       </div>
     </form>
     <div *ngIf="isTransfer" class="success-container">

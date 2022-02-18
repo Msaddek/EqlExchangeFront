@@ -40,8 +40,8 @@ export class TradeComponent implements OnInit {
       user: new FormControl(sessionStorage.getItem('email')),
       currencyPair: new FormControl(this.pair),
       orderType: this.typeControl,
-      amount: new FormControl(0, {validators: this.controlAmountToSell()}),
-      limitPrice: new FormControl(0, {validators: this.controlLimitPrice()})
+      amount: new FormControl(1, {validators: this.controlAmountToSell()}),
+      limitPrice: new FormControl(1, {validators: this.controlLimitPrice()})
     });
   }
 
@@ -69,7 +69,7 @@ export class TradeComponent implements OnInit {
 
   public getMaxLimit(): number {
     let amount: number = this.form.get('amount')?.value;
-    let result = 0;
+    if (amount === null) return 0;
     if(amount != 0) {
       return (this.balance / amount);
     }
