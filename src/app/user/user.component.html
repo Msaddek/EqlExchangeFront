@@ -1,5 +1,5 @@
 <div class="popup-container">
-    <img alt="popup" class="popup-img" src="/assets/img/popup/popup5.png">
+    <img alt="popup" class="popup-img" src="/assets/img/popup/popup7.png">
 </div>
 <div class="title-container">
     <h1 class="title-page">YOUR INFORMATIONS</h1>
@@ -12,7 +12,7 @@
         </div>
         <br/>
         <div class="date-cvc">
-            <mat-card-subtitle>User name :</mat-card-subtitle> 
+            <mat-card-subtitle>User name :</mat-card-subtitle>
             <mat-label class="info">{{user.username}}</mat-label>
         </div>
         <br/>
@@ -58,7 +58,7 @@
                     <input formControlName="password" [type]="hide ? 'password' : 'text'" required matInput>
                     <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button> 
+                    </button>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Confirm Password</mat-label>
@@ -77,4 +77,3 @@
         </form>
     </div>
 </mat-card>
- 

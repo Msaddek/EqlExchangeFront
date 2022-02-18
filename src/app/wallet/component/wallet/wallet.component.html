@@ -8,8 +8,7 @@
 
 
 <mat-card>
-  {{user?.walletAddress?.substring(0, 15) + '...' + user?.walletAddress?.substring(
-  user?.walletAddress!.length - 15, user?.walletAddress!.length - 1)}}
+  {{user?.walletAddress}}
   <mat-card-title class="title">Equity Value (EUR)</mat-card-title>
   <h1 id="amount">{{amount?.toFixed(3)}} €</h1>
 
