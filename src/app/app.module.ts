@@ -32,6 +32,7 @@ import {MatListModule} from "@angular/material/list";
 import { TransferComponent } from './transfer/transfer.component';
 import {TransferModule} from "./transfer/transfer.module";
 import {MatInputModule} from "@angular/material/input";
+import {UserComponent} from "./user/user.component";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {MatInputModule} from "@angular/material/input";
     ChartComponent,
     ExplorerComponent,
     TradeComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
