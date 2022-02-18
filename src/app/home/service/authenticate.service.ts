@@ -12,7 +12,8 @@ import {environment} from "../../../environments/environment";
 export class AuthenticateService {
 
   public currentRole : string = "?";
-  private authenticateURL = environment.backLambda+'/authenticate';
+  private authenticateURL = environment.backEnd+'/authenticate';
+  private lambdaURL = environment.backLambda;
   private _headers = new HttpHeaders({'Content-Type': 'application/json'});
   public isAuthenticated: boolean = false;
   public token: string = '';
@@ -21,11 +22,12 @@ export class AuthenticateService {
 
   public authenticate(login: Login): Observable<LoginResponse>{
     sessionStorage.setItem('authToken',"?");
-    return this.http.post<LoginResponse>(this.authenticateURL,login, {headers: this._headers})
+    return this.http.post<LoginResponse>(this.lambdaURL+'/authenticate',login, {headers: this._headers})
       .pipe(
         tap((loginResponse)=>{
           sessionStorage.clear();
           this.saveToken(loginResponse);
+          console.log(loginResponse.token);
           this.isAuthenticated = true;
           this.router.navigate(['eqlexchange/dashboard']);
         }
